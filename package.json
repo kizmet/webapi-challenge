@@ -1,29 +1,24 @@
 {
   "name": "webapi-challenge",
   "version": "1.0.0",
-  "description": "Web API Challenge",
+  "description": "This challenge allows you to practice the concepts and techniques learned over the past Sprint and apply them in a concrete project. This Sprint explored Building RESTful Web APIs with Express and Node.js, Server-side Routing, Express Middleware & Deployment and Good Practices. In your challenge for this Sprint, you will demonstrate proficiency by creating an Web API using Node.js and Express.",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "(cd server && yarn install)",
+    "server": "yarn run nodemon-server",
+    "nodemon-server": "cd server && yarn nodemon index.js",
+    "start": "cd server && node index.js"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LambdaSchool/Sprint-Challenge-Node-Express.git"
+    "url": "git+https://github.com/kizmet/webapi-challenge.git"
   },
-  "keywords": [
-    "webapi",
-    "unit",
-    "challenge"
-  ],
-  "author": "Lambda School",
+  "keywords": [],
+  "author": "Bryant Patton <bryantpatton@gmail.com>",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LambdaSchool/Sprint-Challenge-Node-Express/issues"
+    "url": "https://github.com/kizmet/webapi-challenge/issues"
   },
-  "homepage": "https://github.com/LambdaSchool/Sprint-Challenge-Node-Express#readme",
-  "dependencies": {
-    "helmet": "^3.20.0",
-    "knex": "^0.19.1",
-    "sqlite3": "^4.0.9"
-  },
-  "devDependencies": {
-    "knex-cleaner": "^1.2.1"
-  }
+  "homepage": "https://github.com/kizmet/webapi-challenge#readme"
 }
