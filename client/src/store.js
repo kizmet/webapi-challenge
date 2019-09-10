@@ -7,7 +7,7 @@ import { createBrowserHistory } from 'history'
 
 //export const history = History.createBrowserHistory()
 export const history = createBrowserHistory({
-  basename: '/prefix/'
+  basename: '/projects/'
 })
 const initialState = {}
 const enhancers = []
