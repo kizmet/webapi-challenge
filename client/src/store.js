@@ -4,8 +4,11 @@ import thunk from 'redux-thunk'
 import * as History from 'history'
 import createRootReducer from './modules'
 import { createBrowserHistory } from 'history'
-export const history = History.createBrowserHistory()
 
+//export const history = History.createBrowserHistory()
+export const history = createBrowserHistory({
+  basename: '/prefix/'
+})
 const initialState = {}
 const enhancers = []
 const middleware = [thunk, routerMiddleware(history)]
@@ -28,15 +31,13 @@ export default function configureStore(initialState) {
     createRootReducer(history), // root reducer with router state
     initialState,
     compose(
-  applyMiddleware(...middleware),
-  ...enhancers
-  )
-
+      applyMiddleware(...middleware),
+      ...enhancers
+    )
   )
 
   return store
 }
-
 
 // export default createStore(
 //   connectRouter(history)(rootReducer),

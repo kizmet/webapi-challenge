@@ -1,5 +1,6 @@
 import React, { createContext } from 'react'
 import { push } from 'connected-react-router'
+import { Route, Link } from 'react-router-dom'
 import {
   Table,
   Input,
@@ -11,7 +12,8 @@ import {
   Menu,
   Dropdown,
   Icon,
-  Switch
+  Switch,
+  Breadcrumb
 } from 'antd'
 import { connect } from 'react-redux'
 import {
@@ -167,16 +169,16 @@ class EditableTable extends React.Component {
   fetchData = async fetchAsync => {
     try {
       await fetchAsync()
-      await this.setState({ 
-        data: this.props.projects, 
-        editingKey: '' , 
+      await this.setState({
+        data: this.props.projects,
+        editingKey: '',
         count: 2
-    })
+      })
     } catch (err) {
       console.log('error occured', err)
     }
   }
-    edit(record) {
+  edit(record) {
     this.setState({ ...this.state, project: record, editingKey: record.id })
   }
 
@@ -209,11 +211,11 @@ class EditableTable extends React.Component {
       } else {
         const newData = [...this.props.projects]
         const addProject = async () => {
-        await this.props.addAsync(row)
-        await newData.push(this.props.project)
-        await this.setState({ data: newData, editingKey: '' })
+          await this.props.addAsync(row)
+          await newData.push(this.props.project)
+          await this.setState({ data: newData, editingKey: '' })
         }
-        addProject ()        
+        addProject()
       }
     })
   }
@@ -227,7 +229,7 @@ class EditableTable extends React.Component {
       const index = this.props.projects.findIndex(item => record.id === item.id)
       if (index > -1) {
         const toggle = newData[index]
-        const item = ({...toggle, completed: !toggle.completed}) 
+        const item = { ...toggle, completed: !toggle.completed }
         newData.splice(index, 1, {
           ...item,
           ...row
@@ -242,7 +244,7 @@ class EditableTable extends React.Component {
           ...row
         })
       } else {
-        return 
+        return
         // newData.push(row)
         // this.setState({ data: newData, editingKey: '' })
         // this.props.addAsync(row)
@@ -252,7 +254,7 @@ class EditableTable extends React.Component {
 
   delete(record) {
     const newData = this.state.data.filter(item => item.id !== record)
-    this.setState({ ...this.state, data: newData, editingKey: ''  })
+    this.setState({ ...this.state, data: newData, editingKey: '' })
     this.props.deleteAsync(record)
   }
   handleAdd = () => {
@@ -266,7 +268,6 @@ class EditableTable extends React.Component {
       data: [...data, newData],
       count: count + 1,
       editingKey: count
-      
     })
     console.table(data)
   }

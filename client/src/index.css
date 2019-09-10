@@ -16,3 +16,7 @@ body {
 button:disabled {
   opacity: 0.5;
 }
+.ant-layout-header {
+	background: #166ab7;
+	color: white;
+}

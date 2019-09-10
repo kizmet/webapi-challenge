@@ -15,9 +15,7 @@ const store = configureStore(/* provide initial state if any */)
 render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <div>
         <App />
-      </div>
     </ConnectedRouter>
   </Provider>,
   target

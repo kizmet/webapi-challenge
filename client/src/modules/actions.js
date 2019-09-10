@@ -143,8 +143,8 @@ export const addAsyncAction = (id, action, setSubmitting) => {
       type: ADD_ACTION_REQUESTED
     })
     try {
-      const res = await fetch(serverURL + `api/projects/${id}/actions`, {
-        method: 'PROJECT',
+      const res = await fetch(serverURL + `api/actions/project-${id}`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -152,7 +152,7 @@ export const addAsyncAction = (id, action, setSubmitting) => {
       })
       const json = await res.json()
       dispatch({
-        type: ADD_ACTION_RECEIVED,
+        type: ADD_ACTION_RECEIVED
       })
       setSubmitting(false)
     } catch (err) {
@@ -160,8 +160,6 @@ export const addAsyncAction = (id, action, setSubmitting) => {
     }
   }
 }
-
-
 
 export const deleteAsyncAction = id => {
   return async dispatch => {
